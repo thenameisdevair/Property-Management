@@ -21,6 +21,8 @@ contract ProMang {
 
     address public owner;
 
+    address public buyer;
+
     struct Property{
         string name;
         string proType;
@@ -41,6 +43,7 @@ contract ProMang {
         _;
     }
 
+
     mapping(address => Property) payment;
 
     constructor() {
@@ -57,8 +60,14 @@ contract ProMang {
         
     }
 
-    function rmvProperty()external onlyOwner {
-        pro_Id--;
+    function rmvProperty(uint8 _index)external onlyOwner {
+        require(_index < properties.length, "Index out of bonds");
+
+        for (uint256 i = _index; i < properties.length - 1; i++) {
+            properties[i] = properties[i + 1];
+        }
+
+        properties.pop();   //to learn more on arrays, and remove, arrays, invest in them.
         // Property memory removeProperty = Property({name: _name , proType: _proType, Id:pro_Id })
 
     }
@@ -69,7 +78,8 @@ contract ProMang {
     }
 
     function setPropertyForSale() external {
-        
+    
+
 
     }
 
