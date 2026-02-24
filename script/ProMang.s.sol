@@ -12,7 +12,7 @@ contract ProMangScript is Script {
     function run() public {
         vm.startBroadcast();
 
-        promang = new ProMang();
+        promang = new ProMang(address(0x1234567890123456789012345678901234567890)); // Example token address
 
         vm.stopBroadcast();
     }
